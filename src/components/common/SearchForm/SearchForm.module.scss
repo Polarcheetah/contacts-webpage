@@ -1,0 +1,11 @@
+@import '../../../styles/settings.scss';
+
+.searchForm {
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+  min-width: 200px;
+  max-width: 400px;
+}
