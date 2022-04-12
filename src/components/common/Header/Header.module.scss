@@ -2,5 +2,8 @@
 
 .header {
     text-align: center;
-    margin: 50px 0;
+    padding: 20px 0;
+    color: $color-main;
+    font-size: $base-size * 2;
+    background-color: lighten($color-dark, 5%);
 };  

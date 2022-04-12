@@ -1,9 +1,12 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import sortByLastName from '../utils/sortByLastName';
 import { initialContactsState, initialState } from './initialState';
 
 //selectors
-
+export const getAllUsers = (state) => state.contacts.data;
+export const getUserById = ({ contacts }, contactId) =>
+  contacts.data.find((contact) => contact.id === contactId);
 //actions
 const createActionName = (actionName) => `app/contacts/${actionName}`;
 const FETCH_START = createActionName('FETCH_START');
@@ -22,6 +25,7 @@ export const fetchContacts = () => {
       'https://teacode-recruitment-challenge.s3.eu-central-1.amazonaws.com/users.json'
     )
       .then((res) => res.json())
+      .then((contacts) => sortByLastName(contacts))
       .then((contacts) => dispatch(downloadContacts(contacts)))
       .catch((error) => {
         dispatch(fetchError(error.message || true));

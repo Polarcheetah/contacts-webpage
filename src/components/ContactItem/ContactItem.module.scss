@@ -1,0 +1,49 @@
+@import '../../styles/settings.scss';
+
+.item{
+    height: 50px;
+    align-items: center;
+  
+}
+.imageWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.image {
+    background-color: darken($color-light, 5%);
+    margin-right: 20px;
+}
+
+.userName {
+    color: darken($color-dark,50%);
+    font-weight: 500;
+    margin: 0;
+    margin-right: 20px;
+}
+
+.email {
+    color: darken($color-dark, 20%); 
+    margin: 0;
+}
+
+.checkboxWrapper {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.checkboxWrapper .checkbox {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    border: solid 2px $color-main;
+    background-color: $color-main;
+    color: $color-main;
+    cursor: pointer;
+}
+
+.checkbox:checked {
+    color: $color-main;
+    background-color: $color-main;
+}
