@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { useEffect } from 'react';
+import { Container, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts, getAllUsers } from '../../../redux/store';
+import { fetchContacts, getFilteredUsers } from '../../../redux/contactsRedux';
 import Header from '../../common/Header/Header';
 import SearchForm from '../../common/SearchForm/SearchForm';
 import ContactsList from '../../ContactsList/ContactsList';
+import styles from './Contacts.module.scss';
 
 const Contacts = () => {
   //fetch contacts data from JSON file
@@ -15,17 +16,17 @@ const Contacts = () => {
   const { error, loading } = useSelector(({ contacts }) => contacts.status);
 
   //define table of objects with contacts data
-  const contacts = useSelector(getAllUsers);
+  const contacts = useSelector((state) => getFilteredUsers(state));
   console.log(contacts);
 
   return (
     <div>
       <Header />
-      {loading && <p>Loading...</p>}
+      {loading && <Spinner animation='border' variant='warning' />}
       {!loading && !error && contacts.length > 0 && (
         <Container>
           <SearchForm />
-          <ContactsList />
+          <ContactsList contacts={contacts} />
         </Container>
       )}
     </div>

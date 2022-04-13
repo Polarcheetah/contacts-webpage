@@ -1,10 +1,16 @@
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { getAllUsers } from '../../redux/store';
+import { getSelectedUsers } from '../../redux/contactsRedux';
 import ContactItem from '../ContactItem/ContactItem';
 
-const ContactsList = () => {
-  const contacts = useSelector(getAllUsers);
+const ContactsList = ({ contacts }) => {
+  const selectedUsers = useSelector(getSelectedUsers);
+
+  console.log(
+    'selected users',
+    selectedUsers.map((user) => user.id)
+  );
+
   return (
     <ListGroup>
       {contacts.map((contact) => (

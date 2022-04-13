@@ -2,16 +2,32 @@ import { Form } from 'react-bootstrap';
 import Button from '../Button/Button';
 import styles from './SearchForm.module.scss';
 import { BiSearchAlt } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { updateSearchString } from '../../../redux/searchStringRedux';
 
-const SearchForm = ({ action }) => {
+const SearchForm = () => {
+  const dispatch = useDispatch();
+
+  const [searchString, setSearchString] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateSearchString(searchString));
+  };
+
+  useEffect(() => {
+    dispatch(updateSearchString(''));
+  }, []);
+
   return (
-    <Form className={styles.searchForm}>
+    <Form className={styles.searchForm} onSubmit={handleSubmit}>
       <Form.Control
         as='input'
         type='text'
         className={styles.input}
         placeholder='Type user filter'
-        onChange={(e) => action(e.target.value)}
+        onChange={(e) => setSearchString(e.target.value)}
       />
       <Button className={styles.button}>
         <BiSearchAlt />

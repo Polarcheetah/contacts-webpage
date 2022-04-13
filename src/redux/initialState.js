@@ -8,4 +8,5 @@ export const initialContactsState = {
 
 export const initialState = {
   contacts: initialContactsState,
+  searchString: '',
 };

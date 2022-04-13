@@ -1,6 +1,6 @@
 import { Col, Container, Form, Image, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { getUserById } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserById, toggleSelectedProp } from '../../redux/contactsRedux';
 import styles from './ContactItem.module.scss';
 
 const ContactItem = ({ id }) => {
@@ -8,9 +8,9 @@ const ContactItem = ({ id }) => {
   //console.log(userData);
 
   const userName = `${userData.first_name} ${userData.last_name}`;
-
-  const handleCheckbox = (e) => {
-    e.preventDefault();
+  const dispatch = useDispatch();
+  const handleCheckbox = () => {
+    dispatch(toggleSelectedProp(id));
   };
 
   return (
@@ -29,12 +29,20 @@ const ContactItem = ({ id }) => {
           <p className={styles.email}>{userData.email}</p>
         </Col>
         <Col className={styles.checkboxWrapper}>
-          <input
+          {/* <input
             type='checkbox'
             className={styles.checkbox}
             value={userData.id}
             onChange={handleCheckbox}
-          />
+          /> */}
+          <Form>
+            <Form.Check
+              type='checkbox'
+              value={userData.selected}
+              checked={userData.selected}
+              onChange={handleCheckbox}
+            />
+          </Form>
         </Col>
       </Row>
     </Container>
