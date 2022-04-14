@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Container, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts, getFilteredUsers } from '../../../redux/contactsRedux';
 import Header from '../../common/Header/Header';
@@ -17,12 +17,17 @@ const Contacts = () => {
 
   //define table of objects with contacts data
   const contacts = useSelector((state) => getFilteredUsers(state));
-  console.log(contacts);
 
   return (
     <div>
       <Header />
-      {loading && <Spinner animation='border' variant='warning' />}
+      {loading && (
+        <Row>
+          <Col className={styles.spinner}>
+            <Spinner animation='border' />
+          </Col>
+        </Row>
+      )}
       {!loading && !error && contacts.length > 0 && (
         <Container>
           <SearchForm />

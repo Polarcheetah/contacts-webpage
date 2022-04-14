@@ -1,3 +1,4 @@
+//check if string contains substring
 const strContains = (string, substring) => {
   if (string.includes(substring)) {
     return true;

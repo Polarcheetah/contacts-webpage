@@ -1,3 +1,5 @@
+// sort an array alphabeticaly
+
 const sortByLastName = (objArr) => {
   const sortedArr = [...objArr];
 

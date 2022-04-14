@@ -1,20 +1,24 @@
-import { Col, Container, Form, Image, Row } from 'react-bootstrap';
+import { Col, Container, Image, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserById, toggleSelectedProp } from '../../redux/contactsRedux';
 import styles from './ContactItem.module.scss';
 
 const ContactItem = ({ id }) => {
-  const userData = useSelector(({ contacts }) => getUserById({ contacts }, id));
-  //console.log(userData);
-
-  const userName = `${userData.first_name} ${userData.last_name}`;
   const dispatch = useDispatch();
+
+  //get data of single user
+  const userData = useSelector(({ contacts }) => getUserById({ contacts }, id));
+
+  //create full userName of first name and last name
+  const userName = `${userData.first_name} ${userData.last_name}`;
+
+  //change property 'selected' of user when checkbox state changes
   const handleCheckbox = () => {
     dispatch(toggleSelectedProp(id));
   };
 
   return (
-    <Container>
+    <Container onClick={handleCheckbox}>
       <Row className={styles.item}>
         <Col className={styles.imageWrapper}>
           <Image
@@ -29,20 +33,13 @@ const ContactItem = ({ id }) => {
           <p className={styles.email}>{userData.email}</p>
         </Col>
         <Col className={styles.checkboxWrapper}>
-          {/* <input
+          <input
             type='checkbox'
+            value={userData.selected}
+            checked={userData.selected}
+            onchange={handleCheckbox}
             className={styles.checkbox}
-            value={userData.id}
-            onChange={handleCheckbox}
-          /> */}
-          <Form>
-            <Form.Check
-              type='checkbox'
-              value={userData.selected}
-              checked={userData.selected}
-              onChange={handleCheckbox}
-            />
-          </Form>
+          />
         </Col>
       </Row>
     </Container>

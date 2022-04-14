@@ -11,14 +11,15 @@ const SearchForm = () => {
 
   const [searchString, setSearchString] = useState('');
 
+  useEffect(() => {
+    dispatch(updateSearchString(''));
+  }, []);
+
+  //update search string in store when input updated
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateSearchString(searchString));
   };
-
-  useEffect(() => {
-    dispatch(updateSearchString(''));
-  }, []);
 
   return (
     <Form className={styles.searchForm} onSubmit={handleSubmit}>

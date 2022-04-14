@@ -16,6 +16,7 @@ export const getFilteredUsers = ({ contacts, searchString }) =>
 
 export const getSelectedUsers = ({ contacts }) =>
   contacts.data.filter((contact) => contact.selected === true);
+
 //actions
 const createActionName = (actionName) => `app/contacts/${actionName}`;
 const FETCH_START = createActionName('FETCH_START');
@@ -23,6 +24,7 @@ const CONTACTS_DOWNLOAD = createActionName('CONTACTS_DOWNLOAD');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
 const ADD_SELECTED_PROP = createActionName('ADD_SELECTED_PROP');
 const TOGGLE_SELECTED_PROP = createActionName('TOGGLE_SELECTED_PROP');
+
 //action creators
 const fetchStart = (payload) => ({ type: FETCH_START, payload });
 const downloadContacts = (payload) => ({ type: CONTACTS_DOWNLOAD, payload });

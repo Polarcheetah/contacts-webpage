@@ -1,7 +1,8 @@
 @import '../../../styles/settings.scss';
 
-.spinner-custom {
-    color: red;
+.spinner {
     text-align: center;
-    margin: 100px 0 0 100px;
+    color: $color-main;
+    margin: 0;
+    padding-top: 100px;
 }
