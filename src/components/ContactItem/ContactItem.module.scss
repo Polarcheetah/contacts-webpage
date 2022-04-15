@@ -1,10 +1,11 @@
 @import '../../styles/settings.scss';
 
-.item{
-    height: 50px;
+.item {
+    min-height: 50px;
     align-items: center;
   
 }
+
 .imageWrapper {
     display: flex;
     align-items: center;
@@ -38,7 +39,6 @@
   background-color: inherit;
   margin: 0;
   font: inherit;
-  //color: darken($color-dark, 20%);
   width: 20px;
   height: 20px;
   border: 1px solid $color-dark;
@@ -61,5 +61,19 @@
 }
 
 .checkbox:checked::before {
-    transform: scale(1);
+  transform: scale(1);
+}
+
+@media (max-width: 767px) {
+  .item {
+    flex-direction: column;
+  }
+
+  .checkboxWrapper {
+    justify-content: start;
+  }
+
+  .email {
+    margin: 10px 0;
+  }
 }
